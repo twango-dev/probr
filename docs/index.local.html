@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <!--External Dependencies-->
+      <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+      <script src="https://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
+      <!--Local CDN Dependencies-->
+      <link href="./cdn/css/quill.css" rel="stylesheet">
+      <link rel="stylesheet" href="./cdn/css/probr.css">
+      <link rel="stylesheet" href="./cdn/css/tooltips.css">
+      <script src="./cdn/js/probr.local.js"></script>
+    </head>
+    <body>
+      <div class="toast-container" style="text-align: center;">
+        <p id="toast">Empty Toast</p>
+      </div>
+      <div class="content" id="editor-target-scroll">
+        <header>
+          <h1 class="top-logo">Probr</h1>
+          <h3 class="top-description">Local Client</h3>
+          <div class="container">
+            <div id="toolbar">
+              <button class="ql-bold" data-tooltip="Bold - Ctrl + B">Bold</button>
+              <button class="ql-italic" data-tooltip="Italic - Ctrl + I">Italic</button>      
+              <button class="ql-underline" data-tooltip="Underline - Ctrl + U"></button>
+              <div class="container">
+                <div class="toolbar-overlay">
+                  <div id="word-count" data-tooltip="0 syllables - 0 sentences">0 words</div>
+                </div>
+                <div class="toolbar-overlay">                  
+                    <div id="server-status" data-tooltip="Try reloading the page">Server Status: <span id="server-status-text" class="fail">Disconnected</span></div>
+                    <span id="review" data-tooltip="Click to start analyzing your text">
+                      <div class="lds-ellipsis invisible"><div></div><div></div><div></div><div></div></div>
+                      <span id="review-text">Analyze Text</span>
+                    </span>
+                    <span id="correct-all" class="slider" data-tooltip="Accept all suggestions">Correct All</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div id="input-container">
+          <div id="editor"></div>
+        </div>
+        <div id="suggestions-container"></div>
+        <div id="scoring-container">
+          <div class="scoring-card">
+            <div class="scoring-card-mini-header">Flesch Reading Ease<a href="" class="material-icons">info</a>
+            </div>
+            <div class="scoring-gauge-container">
+              <canvas id="flesch-reading-ease-gauge"></canvas>
+            </div>
+          </div>
+          
+          
+        </div>
+        <footer>
+            
+        </footer>        
+      </div>       
+    </body>
+</html>
+
+<!--
+  Material Icons Used for status
+  verified_user
+  check_circle
+  warning
+  error
+-->

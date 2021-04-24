@@ -1,0 +1,446 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap");
+
+body {
+    background-color: #2E3440;
+    color: #E5E9F0;
+    font-family: "Rubik", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Containers */
+
+.container {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    padding: 0px 100px 0px 100px;
+}
+
+
+/* Nordic color schmeme */
+
+
+.good {
+    color: #A3BE8C;
+}
+
+.mediocre {
+    color: #EBCB8B;
+}
+
+.warning {
+    color: #D08770;
+}
+
+.fail {
+    color: #BF616A;
+}
+
+/* JS Easy Classes */
+
+.invisible {
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.slider {
+    display: none;
+    opacity: 0;
+    transform: translateX(-20px);
+    -webkit-transform: translateX(-20%);
+}
+
+
+.slide-in {
+    display: block;
+    animation: slide-in 0.5s forwards;
+    -webkit-animation: slide-in 0.5s forwards;
+}
+
+@keyframes slide-in {
+    100% { 
+        opacity: 1;
+        transform: translateX(0%);
+     }
+}
+
+.slide-out {
+    display: block;
+    animation: slide-out 0.5s forwards;
+    -webkit-animation: slide-out 0.5s forwards;
+}
+
+@keyframes slide-out {
+    0% {
+        opacity: 1;
+        transform: translate(0%)
+    }
+    100% { 
+        opacity: 0;
+        transform: translateX(20%)
+    }
+}
+
+.material-icons {
+    margin: 8px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Toast */
+
+.toast-container {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    z-index: 100;
+}
+
+#toast {
+    display: inline-block;
+    background-color: #5E81AC;
+    box-shadow: 0px 5px 10px -4px black;
+    border-radius: 10px;
+    vertical-align: middle;
+    font-size: 16px;
+    line-height: 30px;
+    padding: 2px 30px;
+    transform: translateY(-250%);
+    pointer-events: all;
+    
+}
+
+#toast a {
+    color: #EBCB8B;
+    text-decoration: none;
+}
+
+@keyframes toastNotification {
+    0% {transform: translateY(-225%);}
+    15% {transform: translateY(-10%);}
+    85% {transform: translateY(-10%);}
+    100% {transform: translateY(-225%);}
+}
+
+/* Content */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #2E3440; 
+}
+
+.top-logo {
+    color: #EBCB8B;
+    font-size: 40px;
+    padding-top: 20px;
+    margin-bottom: 0;
+}
+
+.top-description {
+    color: #81A1C1;
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.toolbar-overlay {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-family: "Rubik", sans-serif;
+}
+
+.toolbar-overlay div {
+    display: inline;
+}
+
+#word-count {
+    text-align: center
+}
+
+#correct-all {
+    float: right;
+    background-color: rgba(163, 190, 140, 0.4);
+    border-radius: 5px / 5px;
+    font-size: 13px;
+    width: auto;
+    padding: 2px 6px;
+    margin-right: 20px;
+    transition: all 300ms ease-in-out;
+}
+
+#correct-all:hover {
+    cursor: pointer;
+    background-color: rgb(163, 190, 140);
+}
+
+#review {
+    float: right;
+    background-color: rgba(163, 190, 140, 0.4);
+    border-radius: 5px / 5px;
+    font-size: 13px;
+    width: auto;
+    padding: 2px 6px;
+    margin-right: 20px;
+    transition: all 300ms ease-in-out;
+}
+
+#review:hover {
+    cursor: pointer;
+    background-color: rgb(163, 190, 140);
+}
+
+/* Credits to https://loading.io/css/ for loading icon */
+.lds-ellipsis {
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-ellipsis div {
+    position: absolute;
+    top: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
+    }
+}
+
+#server-status {
+    vertical-align: middle;
+    float: right;
+}
+
+#server-status:hover {
+    cursor: pointer;
+}
+
+#server-status-text {
+    font-weight: bold;
+}
+
+#input-container {
+    position: relative;
+    display: inline-block;
+    width: 47%;
+    height: fit-content;
+    padding: 0px 20px 0px 0px;
+}
+
+#editor {
+    padding-bottom: 100px;
+}
+
+#editor p span {
+    padding: 0px 4px;
+    background-color: rgba(191, 97, 106, 0.5);
+    border-radius: 5px / 5px;
+}
+
+#suggestions-container {
+    vertical-align: top;
+    display: inline-block;
+    width: 47%;
+    height: 100%;
+    padding: 0px 0px 0px 20px;
+}
+
+.suggestion-card {
+    margin: 0px 0px 15px 0px;
+    position: relative;
+    background-color: rgba(76, 86, 106, 0.7);
+    padding: 10px;
+    border-radius: 5px / 5px;
+    box-shadow: 0px 1px 8px rgba(229, 233, 240, 0.2);
+    transition: all 300ms ease-in-out;
+    max-height: 19px;
+}
+
+.suggestion-card-active {
+    max-height: 500px;
+    background-color: #4C566A;
+}
+
+.suggestion-card-mini-header {
+    transition: all 300ms ease-in-out;
+    max-height: 19px;
+    opacity: 1;
+    font-size: 14px;
+}
+
+.suggestion-card-mini-header-hidden {
+    max-height: 0px;
+    opacity: 0;
+}
+
+.suggestion-card-content {
+    transition: all 300ms ease-in-out;
+    max-height: 489px;
+    opacity: 1;
+}
+
+.suggestion-card-content-hidden {
+    max-height: 0px;
+    opacity: 0;
+}
+
+.suggestion-card-content-category {
+    text-transform: capitalize;
+    font-size: 12px;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.suggestion-card-replacement-container {
+    margin: 10px 0px;
+}
+
+.suggestion-card-replacements {
+    padding: 4px;
+    background-color: #2E3440;
+    border-radius: 5px / 5px;
+}
+
+.suggestion-card-message {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.suggestion-card-footer {
+    width: 100%;
+    padding: 6px 0px;
+}
+
+.suggestion-card-replace {
+    background-color: rgba(163, 190, 140, 0.4);
+    border-radius: 5px / 5px;
+    font-size: 13px;
+    width: auto;
+    padding: 4px 6px;
+    margin-right: 4px;
+    transition: all 300ms ease-in-out;
+}
+
+.suggestion-card-replace:hover { 
+    cursor: pointer;
+    background-color: rgb(163, 190, 140);
+}
+
+
+.suggestion-card-ignore {
+    background-color: rgba(46, 52, 64, 0.4);
+    border-radius: 5px / 5px;
+    font-size: 13px;
+    width: auto;
+    padding: 4px 6px;
+    margin-right: 4px;
+    transition: all 300ms ease-in-out;
+}
+
+.suggestion-card-ignore:hover {
+    cursor: pointer;
+    background-color: rgb(46, 52, 64);
+}
+
+#scoring-container {
+    width: 100%;
+    display: block;
+}
+
+.scoring-card {
+    display: inline-block;
+    margin: 15px;
+    position: relative;
+    background-color: rgba(76, 86, 106, 0.7);
+    padding: 10px;
+    border-radius: 5px / 5px;
+    box-shadow: 0px 1px 8px rgba(229, 233, 240, 0.2);
+    transition: all 300ms ease-in-out;
+    width: calc(22% - 30px);
+    max-height: 300px; 
+    max-width: calc(22% - 30px);
+}
+
+.scoring-card-mini-header {
+    text-transform: capitalize;
+    opacity: 0.8;
+    font-size: 12px;
+    margin: 0;
+}
+
+.scoring-card-mini-header .material-icons {
+    float: right;
+    vertical-align: middle;
+    margin: 0;
+    font-size: 24px;
+}
+
+.scoring-gauge-container {
+    margin: 20px 0px;
+    text-align: center;
+}
+
