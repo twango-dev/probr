@@ -1,3 +1,0 @@
-language-check
-wheel
-language_tool_python

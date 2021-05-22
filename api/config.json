@@ -1,3 +1,4 @@
 {
+  "port": 6969,
   "heartbeat_interval": 20000
 }
