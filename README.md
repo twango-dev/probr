@@ -1,4 +1,3 @@
 # Probr
 
-## Local Setup
-To run the local model
+For local setup read [the Wiki](https://github.com/twango-dev/probr/wiki)
