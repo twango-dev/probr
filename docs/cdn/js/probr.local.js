@@ -39,6 +39,10 @@ var websocket
  */
 var latestWebsocketUniqueID = 0
 
+String.prototype.replaceBetween = function(start, end, what) {
+  return this.substring(0, start) + what + this.substring(end);
+};
+
 /**
  * Displays a notification similar to Android Toasts
  * @param {string} innerHTML The message to display, in HTML
@@ -80,11 +84,11 @@ window.onload = () => {
 
         if (languageProcess) {
             document.getElementsByClassName('lds-ellipsis')[0].className = 'lds-ellipsis visible'
-            document.getElementById('review').setAttribute('data-tooltip', 'Analyzing Text...')
+            document.getElementById('analyze-button').setAttribute('data-tooltip', 'Analyzing Text...')
             document.getElementById('review-text').className = 'invisible'
         } else {
             document.getElementsByClassName('lds-ellipsis')[0].className = 'lds-ellipsis invisible'
-            document.getElementById('review').setAttribute('data-tooltip', 'Click to start analyzing your text')
+            document.getElementById('analyze-button').setAttribute('data-tooltip', 'Click to start analyzing your text')
             document.getElementById('review-text').className = 'visible'
         }
 
@@ -179,7 +183,7 @@ window.onload = () => {
                     if (uniqueID === latestWebsocketUniqueID) {
                         console.debug(json)
                         document.getElementsByClassName('lds-ellipsis')[0].className = 'lds-ellipsis invisible'
-                        document.getElementById('review').setAttribute('data-tooltip', 'Click to start analyzing your text')
+                        document.getElementById('analyze-button').setAttribute('data-tooltip', 'Click to start analyzing your text')
                         document.getElementById('review-text').className = 'visible'
 
 
@@ -237,108 +241,51 @@ window.onload = () => {
                                 text_standard: {
                                     score: textStandardScore
                                 }
-                            },
-
-
-
+                            }
                         } = json.d.text_statistics
 
                         wordCountElement.innerText = `${lexiconCount} ${wordCountSuffix}`
                         wordCountElement.setAttribute('data-tooltip', `${syllableCount} syllables - ${sentenceCount} sentences`)
-//todo
+
                         let update = [
                             {
-                                score: {
-                                    id: 'flesch-reading-ease-score',
-                                    value: fleschReadingEaseScore,
-                                },
-                                chart: {
-                                    object: charts.fleschReadingEase,
-                                    data: fleschReadingEaseSPS
-                                }
+                                score: {id: 'flesch-reading-ease-score', value: fleschReadingEaseScore,},
+                                chart: {object: charts.fleschReadingEase, data: fleschReadingEaseSPS}
                             },
                             {
-                                score: {
-                                    id: 'smog-index-score',
-                                    value: smogIndexScore
-                                },
+                                score: {id: 'smog-index-score', value: smogIndexScore},
                                 chart: null
                             },
                             {
-                                score: {
-                                    id: 'flesch-kincaid-grade-score',
-                                    value: fleschKincaidGradeScore
-                                },
-                                chart: {
-                                    object: charts.fleschKincaidGradeChart,
-                                    data: fleschKincaidGradeSPS
-                                }
+                                score: {id: 'flesch-kincaid-grade-score', value: fleschKincaidGradeScore},
+                                chart: {object: charts.fleschKincaidGradeChart, data: fleschKincaidGradeSPS}
                             },
                             {
-                                score: {
-                                    id: 'coleman-liau-index-score',
-                                    value: colemanLiauIndexScore
-                                },
-                                chart: {
-                                    object: charts.colemanLiauIndex,
-                                    data: colemanLiauIndexSPS
-                                }
+                                score: {id: 'coleman-liau-index-score', value: colemanLiauIndexScore},
+                                chart: {object: charts.colemanLiauIndex, data: colemanLiauIndexSPS}
                             },
                             {
-                                score: {
-                                    id: 'automated-readability-index-score',
-                                    value: automatedReadabilityIndexScore
-                                },
-                                chart: {
-                                    object: charts.automatedReadabilityIndex,
-                                    data: automatedReadabilityIndexSPS
-                                }
+                                score: {id: 'automated-readability-index-score', value: automatedReadabilityIndexScore},
+                                chart: {object: charts.automatedReadabilityIndex, data: automatedReadabilityIndexSPS}
                             },
                             {
-                                score: {
-                                    id: 'dale-chall-readability-score',
-                                    value: daleChallReadabilityScore
-                                },
-                                chart: {
-                                    object: charts.daleChallReadability,
-                                    data: daleChallReadabilitySPS
-                                }
+                                score: {id: 'dale-chall-readability-score', value: daleChallReadabilityScore},
+                                chart: {object: charts.daleChallReadability, data: daleChallReadabilitySPS}
                             },
                             {
-                                score: {
-                                    id: 'difficult-words-score',
-                                    value: difficultWords.score
-                                },
-                                chart: {
-                                    object: charts.difficultWords,
-                                    data: difficultWordsScore
-                                }
+                                score: {id: 'difficult-words-score', value: difficultWords.score},
+                                chart: {object: charts.difficultWords, data: difficultWordsScore}
                             },
                             {
-                                score: {
-                                    id: 'linsear-write-formula-score',
-                                    value: linsearWriteFormulaScore
-                                },
-                                chart: {
-                                    object: charts.linsearWriteFormula,
-                                    data: linsearWriteFormulaSPS
-                                }
+                                score: {id: 'linsear-write-formula-score', value: linsearWriteFormulaScore},
+                                chart: {object: charts.linsearWriteFormula, data: linsearWriteFormulaSPS}
                             },
                             {
-                                score: {
-                                    id: 'gunning-fog-score',
-                                    value: gunningFogScore
-                                },
-                                chart: {
-                                    object: charts.gunningFog,
-                                    data: gunningFogSPS
-                                }
+                                score: {id: 'gunning-fog-score', value: gunningFogScore},
+                                chart: {object: charts.gunningFog, data: gunningFogSPS}
                             },
                             {
-                                score: {
-                                    id: 'text-standard-score',
-                                    value: textStandardScore
-                                },
+                                score: {id: 'text-standard-score', value: textStandardScore},
                                 chart: null
                             }
                         ]
@@ -370,11 +317,11 @@ window.onload = () => {
 
                             })
 
-                            languageTool.forEach((match) => {
+                            languageTool.forEach((match, index) => {
                                 createSuggestion(match)
                             })
 
-                            document.getElementById('editor').querySelectorAll('*[style]').forEach((span, index) => {
+                            document.getElementById('editor').querySelectorAll('*[style]').forEach((span) => {
                                 span.className = 'suggestion-highlight'
                             })
 
@@ -424,32 +371,33 @@ window.onload = () => {
     /**
      * Creates a suggestion card
      * @param {JSON} match The match from the API
+     * @param {number} index
      */
     function createSuggestion(match) {
 
-        var replacementHTML = ''
+        let replacementHTML = '';
         match.replacements.forEach((value, index) => {
             if (index > replacementLimit) {
-                return
+                return;
             }
-            replacementHTML += `<span class='suggestion-card-replacements'>${value}</span>\n`
-        })
+            replacementHTML += `<span class='suggestion-card-replacements'>${value}</span>\n`;
+        });
 
-        var text = ''
+        let text = '';
         editor.getContents().ops.forEach((value) => {
             text += value.insert
         })
 
         let phraseToFix = text.substring(match.offset, match.offset + match.errorLength)
 
-        var footer = '<span class="suggestion-card-ignore" id="ignore">Ignore</span>\n<span class="suggestion-card-ignore" id="ignore-all">Ignore All</span>'
+        let footer = '<span class="suggestion-card-ignore" id="ignore">Ignore</span>\n<span class="suggestion-card-ignore" id="ignore-all">Ignore All</span>';
 
         if (match.replacements.length !== 0) {
             footer = '<span class="suggestion-card-replace" id="replace">Replace</span>\n' + footer
         }
 
         let html = `
-        <div class='slider slide-in suggestion-card suggestion-card-active' rule-id='${match.ruleId}'>
+        <div class='slider slide-in suggestion-card suggestion-card-active' rule-id='${match.ruleId}' offset='${match.offset}' error-length='${match.errorLength}'>
           <div class='suggestion-card-mini-header'>${phraseToFix} &#8226 ${match.category}</div>
           <div class='suggestion-card-content suggestion-card-content-hidden'>
             <span class='suggestion-card-content-category'>
@@ -465,13 +413,13 @@ window.onload = () => {
         `
         document.getElementById('suggestions-container').insertAdjacentHTML('beforeend', html)
 
-        let suggestionCards = document.getElementsByClassName('suggestion-card')
-        let createdCard = suggestionCards[suggestionCards.length - 1]
+        const suggestionCards = document.getElementsByClassName('suggestion-card')
+        const createdCard = suggestionCards[suggestionCards.length - 1]
 
         createdCard.onclick = () => {
 
             // Hide all cards
-            for (value of suggestionCards) {
+            for (let value of suggestionCards) {
                 value.getElementsByClassName('suggestion-card-mini-header')[0].className = 'suggestion-card-mini-header'
                 value.getElementsByClassName('suggestion-card-content')[0].className = 'suggestion-card-content suggestion-card-content-hidden'
             }
@@ -481,24 +429,48 @@ window.onload = () => {
             createdCard.getElementsByClassName('suggestion-card-content')[0].className = 'suggestion-card-content'
         }
 
+        const replacementElements = createdCard.getElementsByClassName('suggestion-card-replacements');
+        for (let value of replacementElements) {
+            value.onclick = () => {
+                let text = '';
+                editor.getContents().ops.forEach((value) => {text += value.insert})
+
+                const offset = parseInt(createdCard.getAttribute('offset'))
+                const errorLength = parseInt(createdCard.getAttribute('error-length'))
+
+                text = text.replaceBetween(offset, offset + errorLength, value.innerText)
+                createdCard.className = 'slider slide-out suggestion-card suggestion-card-active'
+                setTimeout(() => {createdCard.style.display = 'none'}, 500)
+                ignoreTextChange = true
+                editor.setText(text)
+
+                const refreshedSuggestions = Array.from(document.getElementsByClassName('suggestion-card'))
+                for (let i = refreshedSuggestions.indexOf(createdCard) + 1; i < refreshedSuggestions.length; i++) {
+                    const elementBelow = refreshedSuggestions[i]
+                    let newOffset = parseInt(elementBelow.getAttribute('offset')) - (errorLength - value.innerText.length);
+                    elementBelow.setAttribute('offset', newOffset.toString())
+                }
+            }
+        }
 
     }
 
     // On editor change event (when user changes text)
-    editor.on('editor-change', () => {
-        document.getElementById('suggestions-container').innerHTML = ''
-        var text = ''
-        editor.getContents().ops.forEach((value) => {text += value.insert})
+    editor.on('editor-change', (eventName) => {
+        if (eventName !== 'text-change') { return }
 
+        let text = '';
+        editor.getContents().ops.forEach((value) => {text += value.insert})
 
         if (!ignoreTextChange) {
             console.debug(`Input updated to ${text}`)
+            document.getElementById('suggestions-container').innerHTML = ''
             document.getElementById('correct-all').className = 'slider'
             createTextQuery(text, false) // This query will not contain language processing (performance)
 
             // Clear highlight (still buggy)
-            ignoreTextChange = true
             editor.removeFormat(0, editor.getLength() - 1, Quill.sources.USER)
+            ignoreTextChange = true
         } else {
             ignoreTextChange = false
         }
@@ -507,12 +479,44 @@ window.onload = () => {
 
 
     // On review button click
-    document.getElementById('review').onclick = () => {
-        var text = ''
-        editor.getContents().ops.forEach((value) => {
-            text += value.insert
-        })
+    document.getElementById('analyze-button').onclick = () => {
+        let text = '';
+        editor.getContents().ops.forEach((value) => {text += value.insert})
         createTextQuery(text, true)
+    }
+
+    document.getElementById('correct-all').onclick = () => {
+        Array.from(document.getElementsByClassName('suggestion-card')).forEach((suggestion) => {
+
+            const firstReplacement = suggestion.getElementsByClassName('suggestion-card-replacements')[0]
+            if (firstReplacement === undefined) {
+                suggestion.className = 'slider slide-out suggestion-card suggestion-card-active'
+                return
+            }
+
+            let text = '';
+            editor.getContents().ops.forEach((value) => {text += value.insert})
+
+            const offset = parseInt(suggestion.getAttribute('offset'))
+            const errorLength = parseInt(suggestion.getAttribute('error-length'))
+
+
+            text = text.replaceBetween(offset, offset + errorLength, firstReplacement.innerText)
+            suggestion.className = 'slider slide-out suggestion-card suggestion-card-active'
+            setTimeout(() => {suggestion.style.display = 'none'}, 500)
+            ignoreTextChange = true
+            editor.setText(text)
+
+            const refreshedSuggestions = Array.from(document.getElementsByClassName('suggestion-card'))
+            for (let i = refreshedSuggestions.indexOf(suggestion) + 1; i < refreshedSuggestions.length; i++) {
+                const elementBelow = refreshedSuggestions[i]
+                let newOffset = parseInt(elementBelow.getAttribute('offset')) - (errorLength - firstReplacement.innerText.length);
+                elementBelow.setAttribute('offset', newOffset.toString())
+            }
+        })
+        document.getElementById('correct-all').className = 'slider slide-out'
+
+
     }
 
     console.log('Page successfully loaded')
