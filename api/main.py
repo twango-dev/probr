@@ -66,6 +66,7 @@ class WebsocketHandler(WebSocket):
         Thread(target=heart_thread).start()
 
     def handleMessage(self):
+        print(f'Debug: {self.data}')
         try:
             given_json: dict = json.loads(self.data)
             opcode: int = given_json["op"]
