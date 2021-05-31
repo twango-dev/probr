@@ -3,10 +3,18 @@
  * @param {object} chart
  * @param {object} dataLabels
  * @param {object} data
+ * @param {string} color
  */
-function updateChartData(chart, dataLabels, data) {
+function updateChartData(chart, dataLabels, data, color) {
+    if (color === '') {
+        color = '#FFFFFF'
+    } else {
+        color = colors[color]
+    }
     chart.data.labels = dataLabels;
     chart.data.datasets[0].data = data;
+    chart.data.datasets[0].backgroundColor = color
+    chart.data.datasets[0].borderColor = color + 'BF'
     chart.update();
 }
 
@@ -50,43 +58,43 @@ function defaultChartSettings(label) {
 let charts = {
     fleschReadingEase: {
         id: 'flesch-reading-ease-chart',
-        label: 'Flesch Reading Ease:'
+        label: 'FRE'
     },
     fleschKincaidGradeChart: {
         id: 'flesch-kincaid-grade-chart',
-        label: 'Flesch Kincaid Grade:'
+        label: 'FKG'
     },
     colemanLiauIndex: {
         id: 'coleman-liau-index-chart',
-        label: 'Coleman Liau Index:'
+        label: 'CLI'
     },
     automatedReadabilityIndex: {
         id: 'automated-readability-index-chart',
-        label: 'Automated Readability Index:'
+        label: 'ARI'
     },
     daleChallReadability: {
         id: 'dale-chall-readability-chart',
-        label: 'Dale Chall Readability:'
+        label: 'DCR'
     },
     difficultWords: {
         id: 'difficult-words-chart',
-        label: 'Difficult Words:'
+        label: 'DW'
     },
     linsearWriteFormula: {
         id: 'linsear-write-formula-chart',
-        label: 'Linear Write Formula:'
+        label: 'LWF'
     },
     gunningFog: {
         id: 'gunning-fog-chart',
-        label: 'Gunning Fog:'
+        label: 'GF'
     },
     wordCount: {
         id: 'word-count-chart',
-        label: 'Word Count:'
+        label: 'WC'
     },
     syllableCount: {
         id: 'syllable-count-chart',
-        label: 'Syllable Count:'
+        label: 'SC'
     }
 
 };

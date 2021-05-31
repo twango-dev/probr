@@ -11,14 +11,14 @@
         <link rel="stylesheet" href="./cdn/css/probr.css">
         <link rel="stylesheet" href="./cdn/css/tooltips.css">
         <!--Scripts-->
-        <script src="./cdn/js/probr.local.min.js"></script>
+        <script src="./cdn/js/probr.local.js"></script>
     </head>
     <body>
         <div class="toast-container" style="text-align: center;"><p id="toast">Empty Toast</p></div>
         <div class="content" id="editor-target-scroll">
             <header>
                 <h1 class="top-logo">Probr</h1>
-                <h3 class="top-description">Local Client</h3>
+                <h3 class="top-description">An Uber Project</h3>
                 <div class="container">
                     <div id="toolbar">
                         <button class="ql-bold" data-tooltip="Bold - Ctrl + B">Bold</button>
@@ -29,7 +29,6 @@
                                 <div id="word-count" data-tooltip="0 syllables - 0 sentences">0 words</div>
                             </div>
                             <div class="toolbar-overlay">
-                                <div id="server-status" data-tooltip="Try reloading the page">Server Status: <span id="server-status-text" class="fail">Disconnected</span></div>
                                 <span id="analyze-button" data-tooltip="Click to start analyzing your text">
                                     <div class="lds-ellipsis invisible">
                                         <div></div>
@@ -53,89 +52,88 @@
                 <div class="scoring-card">
                     <div class="scoring-card-mini-header">
                         <span class="title">Statistics</span>
-                        <a href="https://github.com/twango-dev/probr/wiki" class="material-icons">info</a> <!--TODO update link lol-->
                     </div>
                     <div class="container">
                         <div class="scoring-card-quad-column">
-                            <div class="major-indicator" id="flesch-reading-ease-score">206.84</div>
-                            <div class="section-title">Flesch Reading Ease</div>
                             <div class="container">
                                 <canvas id="flesch-reading-ease-chart" height="430" width="1000"></canvas>
                             </div>
+                            <div class="major-indicator good" id="flesch-reading-ease-score">206.84</div>
+                            <a class="section-title" data-tooltip="Measures average length of sentence (number of words) and average number of syllables per word">Flesch Reading Ease</a>
                         </div>
                         <div class="scoring-card-quad-column">
-                            <div class="major-indicator" id="smog-index-score">0.0</div>
-                            <div class="section-title">Smog Index</div>
+                            <div class="major-indicator good" id="smog-index-score">0.0</div>
+                            <a class="section-title" data-tooltip="A smog index uses the words with three or more syllables in 10 sentence examples from the text to estimate the age/grade level needed to understand the text">Smog Index</a>
                         </div>
                         <div class="scoring-card-quad-column">
-                            <div class="major-indicator" id="flesch-kincaid-grade-score">-15.7</div>
-                            <div class="section-title">Flesch Kincaid Grade</div>
                             <div class="container">
                                 <canvas id="flesch-kincaid-grade-chart" height="430" width="1000"></canvas>
                             </div>
+                            <div class="major-indicator good" id="flesch-kincaid-grade-score">-15.7</div>
+                            <a class="section-title" data-tooltip="Measures average length of sentence and average number of syllables per word and gives a score related to grade level">Flesch Kincaid Grade</a>
                         </div>
                         <div class="scoring-card-quad-column">
-                            <div class="major-indicator" id="coleman-liau-index-score">-15.81</div>
-                            <div class="section-title">Coleman Liau Index</div>
                             <div class="container">
                                 <canvas id="coleman-liau-index-chart" height="430" width="1000"></canvas>
                             </div>
+                            <div class="major-indicator good" id="coleman-liau-index-score">-15.81</div>
+                            <a class="section-title" data-tooltip="The Coleman liau system relies on characters instead of syllables per word to calculate the readability of the text">Coleman Liau Index</a>
                         </div>
                         <div class="scoring-card-quad-column">
-                            <div class="major-indicator" id="automated-readability-index-score">0.0</div>
-                            <div class="section-title">Automated Readability Index</div>
                             <div class="container">
                                 <canvas id="automated-readability-index-chart" height="430" width="1000"></canvas>
                             </div>
+                            <div class="major-indicator good" id="automated-readability-index-score">0.0</div>
+                            <a class="section-title" data-tooltip="Automated readability index uses the number of words, characters, and sentences to calculate the readability of the sentence">Automated Readability Index</a>
                         </div>
                         <div class="scoring-card-quad-column">
-                            <div class="major-indicator" id="dale-chall-readability-score">0.0</div>
-                            <div class="section-title">Dale Chall Readability Score</div>
                             <div class="container">
                                 <canvas id="dale-chall-readability-chart" height="430" width="1000"></canvas>
                             </div>
+                            <div class="major-indicator good" id="dale-chall-readability-score">0.0</div>
+                            <a class="section-title" data-tooltip="The Dale Chall readability score uses a list of 3,000 words that 80% of fourth grade students could easily understand to gauge how easily understandable the text is">Dale Chall Readability Score</a>
                         </div>
                         <div class="scoring-card-quad-column">
-                            <div class="major-indicator" id="difficult-words-score">0</div>
-                            <div class="section-title">Difficult Words</div>
                             <div class="container">
                                 <canvas id="difficult-words-chart" height="430" width="1000"></canvas>
                             </div>
+                            <div class="major-indicator" id="difficult-words-score">0</div>
+                            <a class="section-title" data-tooltip="Difficult words that all audiences may not understand">Difficult Words</a>
                         </div>
                         <div class="scoring-card-quad-column">
-                            <div class="major-indicator" id="linsear-write-formula-score">0</div>
-                            <div class="section-title">Linsear Write Formula</div>
                             <div class="container">
                                 <canvas id="linsear-write-formula-chart" height="430" width="1000"></canvas>
                             </div>
+                            <div class="major-indicator" id="linsear-write-formula-score">0</div>
+                            <a class="section-title" data-tooltip="The linsear write formula uses a 100 word sample and adds points to the given score based on how many words are two syllables or less or 3 syllables or more are in the number of sentences. This score is then divided by the number of sentences in the sample">Linsear Write Formula</a>
                         </div>
                         <div class="scoring-card-quad-column">
-                            <div class="major-indicator" id="gunning-fog-score">0</div>
-                            <div class="section-title">Gunning Fog</div>
                             <div class="container">
                                 <canvas id="gunning-fog-chart" height="430" width="1000"></canvas>
                             </div>
+                            <div class="major-indicator" id="gunning-fog-score">0</div>
+                            <a class="section-title" data-tooltip="Gunning fog index uses a sample of 100 words to determine average sentence length and number of complex words (words with three or more syllables)">Gunning Fog</a>
                         </div>
                         <div class="scoring-card-quad-column">
                             <div class="major-indicator" id="text-standard-score">-1th and 0th grade</div>
-                            <div class="section-title">Text Standard</div>
+                            <a class="section-title" data-tooltip="The grade level the text is rated for">Text Standard</a>
                         </div>
                         <div class="scoring-card-quad-column">
-                            <div class="major-indicator" id="word-count-score">0</div>
-                            <div class="section-title">Word Count Per Sentence</div>
                             <div class="container">
                                 <canvas id="word-count-chart" height="430" width="1000"></canvas>
                             </div>
+                            <div class="major-indicator good" id="word-count-score">0</div>
+                            <a class="section-title">Average Word Count Per Sentence</a>
                         </div>
                         <div class="scoring-card-quad-column">
-                            <div class="major-indicator" id="syllable-count-score">0</div>
-                            <div class="section-title">Syllable Count Per Sentence</div>
                             <div class="container">
                                 <canvas id="syllable-count-chart" height="430" width="1000"></canvas>
                             </div>
+                            <div class="major-indicator good" id="syllable-count-score">0</div>
+                            <a class="section-title">Average Syllable Count Per Sentence</a>
                         </div>
                     </div>
-                    <script src="./cdn/js/chartinit.min.js"></script>
+                    <script src="./cdn/js/chartinit.js"></script>
                 </div>
             </div>
             <footer>

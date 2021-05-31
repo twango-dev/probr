@@ -1,4 +1,5 @@
 language_tool_python
-SimpleWebSocketServer
-textstat
+textstat~=0.7.0
 sentence-splitter
+Flask~=2.0.1
+flask_cors
